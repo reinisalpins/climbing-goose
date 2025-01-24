@@ -9,5 +9,9 @@
 <body class="bg-[#FAFAFA]">
 @include('components.header')
 @yield('content')
+
+@if (session('success'))
+    <div data-success="{{ session('success') }}"></div>
+@endif
 </body>
 </html>

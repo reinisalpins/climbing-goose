@@ -62,20 +62,26 @@ class PostsController extends Controller
     {
         $this->postRepository->createPost($request->getData());
 
-        return redirect()->route('profile.posts.index');
+        return redirect()
+            ->route('profile.posts.index')
+            ->with('success', 'Post created.');
     }
 
     public function updatePost(UpdatePostRequest $request): RedirectResponse
     {
         $post = $this->postRepository->updatePost($request->getData());
 
-        return redirect()->route('profile.posts.edit', ['post_id' => $post->id]);
+        return redirect()
+            ->route('profile.posts.edit', ['post_id' => $post->id])
+            ->with('success', 'Post updated.');
     }
 
     public function deletePost(DeletePostRequest $request): RedirectResponse
     {
         $this->postRepository->deletePost($request->getPostId());
 
-        return redirect()->route('profile.posts.index');
+        return redirect()
+            ->route('profile.posts.index')
+            ->with('success', 'Post deleted.');
     }
 }

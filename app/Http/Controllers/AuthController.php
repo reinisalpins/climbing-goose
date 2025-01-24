@@ -52,7 +52,9 @@ class AuthController extends Controller
 
         $this->authManager->login($user);
 
-        return redirect()->route('profile.posts.index')->with('success', 'Registration successful!');
+        return redirect()
+            ->route('profile.posts.index')
+            ->with('success', 'Registration successful!');
     }
 
     public function logout(Request $request): RedirectResponse
