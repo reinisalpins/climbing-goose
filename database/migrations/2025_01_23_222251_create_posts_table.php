@@ -13,12 +13,11 @@ return new class extends Migration {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            /**
-             * @note fulltext index would be better but sqlite doesn't support fulltext index
-             */
-            $table->string('title')->index();
-            $table->text('body')->index();
+            $table->string('title');
+            $table->text('body');
             $table->timestamps();
+
+            $table->index(['title', 'body']);
         });
     }
 
