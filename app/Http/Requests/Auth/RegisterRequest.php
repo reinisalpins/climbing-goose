@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Requests\Auth;
 
 use App\DataTransferObjects\Auth\RegisterDto;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegisterRequest extends FormRequest
 {
@@ -22,7 +24,7 @@ class RegisterRequest extends FormRequest
                 'string',
                 'email',
                 'max:255',
-                'unique:users',
+                Rule::unique(User::class, 'email'),
             ],
             'password' => [
                 'required',
