@@ -14,12 +14,16 @@ class LoginRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'exists:users',
             ],
             'password' => [
                 'required',
                 'string',
             ]
         ];
+    }
+
+    public function getCredentials(): array
+    {
+        return $this->only('email', 'password');
     }
 }

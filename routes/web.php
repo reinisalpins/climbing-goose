@@ -12,14 +12,6 @@ Route::get('/post', function () {
     return view('pages.single-post');
 })->name('posts.show');
 
-Route::get('/profile/posts/create', function () {
-    return view('pages.profile.create-post');
-})->name('profile.posts.create');
-
-Route::get('/profile/posts/{post_id}/edit', function () {
-    return view('pages.profile.edit-post');
-})->name('profile.posts.edit');
-
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login.store');
@@ -32,4 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
     Route::get('/profile/posts', [PostsController::class, 'showUserPosts'])->name('profile.posts.index');
+    Route::get('/profile/posts/create', [PostsController::class, 'showCreatePostForm'])->name('profile.posts.create');
+    Route::get('/profile/posts/{post_id}/edit', [PostsController::class, 'showEditPostForm'])->name('profile.posts.edit');
+
+    Route::post('/posts', [PostsController::class, 'createPost'])->name('posts.store');
+    Route::patch('/posts/{post_id}', [PostsController::class, 'updatePost'])->name('posts.update');
+    Route::delete('/posts/{post_id}', [PostsController::class, 'deletePost'])->name('posts.delete');
 });

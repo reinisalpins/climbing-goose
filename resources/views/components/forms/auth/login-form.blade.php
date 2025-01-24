@@ -1,9 +1,7 @@
-<form class="flex flex-col">
-    <label class="text-sm" for="email">Email</label>
-    <input type="email" id="email" class="border px-3 py-1.5 rounded-xl"/>
+<form class="flex flex-col gap-4" method="POST" action="{{route('auth.login.store')}}">
+    @csrf
+    <x-ui-elements.input name="email" label="Email" type="email"/>
+    <x-ui-elements.input name="password" label="Password" type="password"/>
 
-    <label class="text-sm mt-4" for="password">Password</label>
-    <input type="password" id="password" class="border px-3 py-1.5 rounded-xl"/>
-
-    <button type="submit" class="bg-primary py-1.5 rounded-xl text-white mt-6">Login</button>
+    <button type="submit" class="bg-primary py-1.5 rounded-xl text-white">Login</button>
 </form>

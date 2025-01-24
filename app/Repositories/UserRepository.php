@@ -7,7 +7,7 @@ namespace App\Repositories;
 use App\DataTransferObjects\Auth\RegisterDto;
 use App\Models\User;
 
-class AuthRepository
+class UserRepository
 {
     public function __construct(
         private readonly User $user
