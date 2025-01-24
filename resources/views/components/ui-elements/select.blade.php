@@ -6,8 +6,6 @@
     'multiple' => true
 ])
 
-@php
-@endphp
 <div class="flex flex-col">
     <label class="text-sm" for="{{ $name }}">
         {{ $label }}

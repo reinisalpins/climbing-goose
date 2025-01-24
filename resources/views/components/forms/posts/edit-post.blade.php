@@ -1,4 +1,6 @@
-<?php /** @var $post \App\Models\Post */ ?>
+@php
+    /** @var $post \App\Models\Post */
+@endphp
 
 <form class="flex flex-col mt-6 gap-6" method="POST" action="{{ route('posts.update', ['post_id' => $post->id]) }}">
     @csrf

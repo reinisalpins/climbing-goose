@@ -15,7 +15,9 @@
             'name' => $name,
             'class' => 'border px-3 py-1.5 rounded-xl max-h-[500px] min-h-[100px] ' . ($errors->has($name) ? 'border-red-500' : '')
         ]) }}
-    >{{old($name, $value)}}</textarea>
+    >
+        {{old($name, $value)}}
+    </textarea>
 
     @error($name)
     <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
