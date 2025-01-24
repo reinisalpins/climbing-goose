@@ -84,4 +84,11 @@ class PostsController extends Controller
             ->route('profile.posts.index')
             ->with('success', 'Post deleted.');
     }
+
+    public function showPost(): View
+    {
+
+
+        return view('pages.single-post');
+    }
 }

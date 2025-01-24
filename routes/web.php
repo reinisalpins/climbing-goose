@@ -8,10 +8,6 @@ Route::get('/', function () {
     return view('pages.posts');
 })->name('posts.index');
 
-Route::get('/post', function () {
-    return view('pages.single-post');
-})->name('posts.show');
-
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login.store');
@@ -31,3 +27,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/posts/{post_id}', [PostsController::class, 'updatePost'])->name('posts.update');
     Route::delete('/posts/{post_id}', [PostsController::class, 'deletePost'])->name('posts.delete');
 });
+
+Route::get('/posts/{post_id}', [PostsController::class, 'showPost'])->name('posts.show');
