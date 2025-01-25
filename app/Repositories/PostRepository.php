@@ -8,8 +8,8 @@ use App\DataTransferObjects\Posts\CreatePostRequestDto;
 use App\DataTransferObjects\Posts\UpdatePostRequestDto;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PostRepository
 {
@@ -37,12 +37,21 @@ class PostRepository
             ->get();
     }
 
-    /**
-     * @throws ModelNotFoundException
-     */
     public function getById(int $id): Post
     {
         return $this->post->findOrFail($id);
+    }
+
+    public function getByIdWithRelations(int $id): Post
+    {
+        return $this->post
+            ->with([
+                'comments' => [
+                    'user'
+                ]
+            ])
+            ->withCount('comments')
+            ->findOrFail($id);
     }
 
     public function updatePost(UpdatePostRequestDto $data): Post
@@ -62,5 +71,29 @@ class PostRepository
     public function deletePost(int $postId): void
     {
         $this->getById($postId)->delete();
+    }
+
+    public function getAllPosts(): Collection
+    {
+        return $this->post
+            ->with('categories')
+            ->withCount('comments')
+            ->get();
+    }
+
+    public function searchPosts(string $searchQuery = null): Collection
+    {
+        $query = $this->post
+            ->with('categories')
+            ->withCount('comments');
+
+        if ($searchQuery) {
+            $query->where(function(Builder $builder) use ($searchQuery) {
+                $builder->where('body', 'like', '%' . $searchQuery . '%')
+                    ->orWhere('title', 'like', '%' . $searchQuery . '%');
+            });
+        }
+
+        return $query->get();
     }
 }

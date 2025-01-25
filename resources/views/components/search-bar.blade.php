@@ -1,5 +1,9 @@
-<form class="w-full flex justify-center">
-    <input placeholder="Search..." class="border px-3 h-[50px] rounded-2xl max-w-[450px] w-full"/>
+@props([
+    'searchTerm' => null
+])
+
+<form class="flex w-full justify-center" method="GET" action="{{route('posts.search')}}">
+    @include('components.ui-elements.input', ['value' => $searchTerm, 'name' => 'query', 'placeholder' => 'Search...', 'class' => 'w-[300px] md:w-[400px] border px-3 h-[50px] rounded-2xl'])
     <button type="submit"
             class="p-3 border w-[50px] h-[50px] rounded-2xl ml-1 bg-primary flex justify-center items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 16 16">

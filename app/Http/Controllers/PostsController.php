@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Posts\CreatePostRequest;
 use App\Http\Requests\Posts\DeletePostRequest;
+use App\Http\Requests\Posts\SearchPostsRequest;
 use App\Http\Requests\Posts\ShowEditPostFormRequest;
+use App\Http\Requests\Posts\ShowPostRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
@@ -85,10 +87,27 @@ class PostsController extends Controller
             ->with('success', 'Post deleted.');
     }
 
-    public function showPost(): View
+    public function showPost(ShowPostRequest $request): View
     {
+        $post = $this->postRepository->getByIdWithRelations($request->getPostId());
 
+        return view('pages.single-post', ['post' => $post]);
+    }
 
-        return view('pages.single-post');
+    public function showAll(): View
+    {
+        $posts = $this->postRepository->getAllPosts();
+
+        return view('pages.posts', ['posts' => $posts]);
+    }
+
+    public function searchPosts(SearchPostsRequest $request): View
+    {
+        $posts = $this->postRepository->searchPosts($request->getQuery());
+
+        return view('pages.search-posts', [
+            'posts' => $posts,
+            'searchTerm' => $request->getQuery(),
+        ]);
     }
 }

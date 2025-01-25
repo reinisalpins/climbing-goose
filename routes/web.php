@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('pages.posts');
-})->name('posts.index');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('auth.login');
@@ -26,6 +25,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostsController::class, 'createPost'])->name('posts.store');
     Route::patch('/posts/{post_id}', [PostsController::class, 'updatePost'])->name('posts.update');
     Route::delete('/posts/{post_id}', [PostsController::class, 'deletePost'])->name('posts.delete');
+
+    Route::post('/posts/{post_id}/comments', [CommentsController::class, 'createComment'])->name('posts.comments.store');
+    Route::delete('/comments/{comment_id}', [CommentsController::class, 'deleteComment'])->name('comments.delete');
 });
 
 Route::get('/posts/{post_id}', [PostsController::class, 'showPost'])->name('posts.show');
+Route::get('/', [PostsController::class, 'showAll'])->name('posts.index');
+Route::get('/search', [PostsController::class, 'searchPosts'])->name('posts.search');

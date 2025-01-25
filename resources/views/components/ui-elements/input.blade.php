@@ -1,22 +1,28 @@
 @props([
     'name',
-    'label',
+    'label' => null,
+    'class' => null,
     'type' => 'text',
-    'value' => null
+    'placeholder' => null,
+    'value' => null,
+    'containerClass' => null
 ])
 
-<div class="flex flex-col">
-    <label class="text-sm" for="{{ $name }}">
-        {{ $label }}
-    </label>
+<div class="flex flex-col {{$containerClass}}">
+    @if($label)
+        <label class="text-sm" for="{{ $name }}">
+            {{ $label }}
+        </label>
+    @endif
 
     <input
         {{ $attributes->merge([
             'type' => $type,
             'id' => $name,
             'name' => $name,
+            'placeholder' => $placeholder,
             'value' => old($name, $value),
-            'class' => 'border px-3 py-1.5 rounded-xl ' . ($errors->has($name) ? 'border-red-500' : '')
+            'class' => "border px-3 py-1.5 rounded-xl $class" . ($errors->has($name) ? 'border-red-500' : '')
         ]) }}
     />
 
