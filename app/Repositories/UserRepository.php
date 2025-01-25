@@ -11,9 +11,7 @@ class UserRepository
 {
     public function __construct(
         private readonly User $user
-    )
-    {
-    }
+    ) {}
 
     public function createUser(RegisterDto $dto): User
     {

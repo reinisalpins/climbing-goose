@@ -15,16 +15,14 @@ class PostRepository
 {
     public function __construct(
         private readonly Post $post
-    )
-    {
-    }
+    ) {}
 
     public function createPost(CreatePostRequestDto $dto): void
     {
         $post = $this->post->create([
             'title' => $dto->title,
             'body' => $dto->body,
-            'user_id' => $dto->user->id
+            'user_id' => $dto->user->id,
         ]);
 
         $post->categories()->attach($dto->categories);
@@ -47,8 +45,8 @@ class PostRepository
         return $this->post
             ->with([
                 'comments' => [
-                    'user'
-                ]
+                    'user',
+                ],
             ])
             ->withCount('comments')
             ->findOrFail($id);
@@ -73,7 +71,7 @@ class PostRepository
         $this->getById($postId)->delete();
     }
 
-    public function getPosts(string $searchTerm = null): Collection
+    public function getPosts(?string $searchTerm = null): Collection
     {
         $query = $this->post
             ->with(['categories', 'user'])

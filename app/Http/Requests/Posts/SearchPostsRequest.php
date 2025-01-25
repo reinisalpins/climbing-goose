@@ -14,7 +14,7 @@ class SearchPostsRequest extends FormRequest
             'term' => [
                 'string',
                 'nullable',
-            ]
+            ],
         ];
     }
 

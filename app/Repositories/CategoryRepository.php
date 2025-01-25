@@ -11,9 +11,7 @@ class CategoryRepository
 {
     public function __construct(
         private readonly Category $category
-    )
-    {
-    }
+    ) {}
 
     public function getAll(): Collection
     {

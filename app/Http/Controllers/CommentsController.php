@@ -13,9 +13,7 @@ class CommentsController extends Controller
 {
     public function __construct(
         private readonly CommentRepository $commentRepository
-    )
-    {
-    }
+    ) {}
 
     public function createComment(CreateCommentRequest $request): RedirectResponse
     {

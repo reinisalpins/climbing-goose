@@ -11,16 +11,14 @@ class CommentRepository
 {
     public function __construct(
         private readonly Comment $comment
-    )
-    {
-    }
+    ) {}
 
     public function createComment(CreateCommentRequestDto $data): void
     {
         $this->comment->create([
-           'post_id' => $data->postId,
-           'user_id' => $data->user->id,
-           'body' => $data->body,
+            'post_id' => $data->postId,
+            'user_id' => $data->user->id,
+            'body' => $data->body,
         ]);
     }
 

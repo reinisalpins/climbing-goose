@@ -7,11 +7,9 @@ namespace App\DataTransferObjects\Posts;
 class UpdatePostRequestDto
 {
     public function __construct(
-        public int    $postId,
+        public int $postId,
         public string $title,
         public string $body,
-        public array  $categories,
-    )
-    {
-    }
+        public array $categories,
+    ) {}
 }

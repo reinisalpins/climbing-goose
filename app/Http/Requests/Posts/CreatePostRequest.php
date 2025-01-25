@@ -31,7 +31,7 @@ class CreatePostRequest extends FormRequest
                 'required',
                 'integer',
                 Rule::exists(Category::class, 'id'),
-            ]
+            ],
         ];
     }
 

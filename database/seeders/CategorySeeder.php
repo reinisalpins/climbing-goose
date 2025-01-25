@@ -19,7 +19,7 @@ class CategorySeeder extends Seeder
             'Automotive',
             'Toys',
             'Food',
-            'Art'
+            'Art',
         ];
 
         foreach ($categories as $category) {

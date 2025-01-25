@@ -23,20 +23,20 @@ class CreateCommentRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-            ]
+            ],
         ];
     }
 
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'post_id' => $this->getPostId()
+            'post_id' => $this->getPostId(),
         ]);
     }
 
     public function getPostId(): int
     {
-        return (int)$this->route('post_id');
+        return (int) $this->route('post_id');
     }
 
     public function getData(): CreateCommentRequestDto

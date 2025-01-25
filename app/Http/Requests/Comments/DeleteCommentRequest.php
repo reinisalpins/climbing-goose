@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Comments;
 
-use App\DataTransferObjects\Comments\CreateCommentRequestDto;
 use App\Models\Comment;
-use App\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,12 +24,12 @@ class DeleteCommentRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'comment_id' => $this->getCommentId()
+            'comment_id' => $this->getCommentId(),
         ]);
     }
 
     public function getCommentId(): int
     {
-        return (int)$this->route('comment_id');
+        return (int) $this->route('comment_id');
     }
 }

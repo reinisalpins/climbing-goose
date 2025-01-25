@@ -11,8 +11,6 @@ class CreateCommentRequestDto
     public function __construct(
         public int $postId,
         public string $body,
-        public User   $user,
-    )
-    {
-    }
+        public User $user,
+    ) {}
 }

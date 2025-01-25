@@ -12,21 +12,21 @@ class ShowPostRequest extends FormRequest
     {
         return [
             'post_id' => [
-              'required',
-              'integer',
-            ]
+                'required',
+                'integer',
+            ],
         ];
     }
 
     protected function prepareForValidation(): void
     {
         $this->merge([
-           'post_id' => $this->getPostId()
+            'post_id' => $this->getPostId(),
         ]);
     }
 
     public function getPostId(): int
     {
-        return (int)$this->route('post_id');
+        return (int) $this->route('post_id');
     }
 }

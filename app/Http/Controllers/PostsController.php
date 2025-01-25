@@ -20,10 +20,8 @@ class PostsController extends Controller
 {
     public function __construct(
         private readonly CategoryRepository $categoryRepository,
-        private readonly PostRepository     $postRepository
-    )
-    {
-    }
+        private readonly PostRepository $postRepository
+    ) {}
 
     public function showCreatePostForm(): View
     {
@@ -56,7 +54,7 @@ class PostsController extends Controller
 
         return view('pages.profile.posts', [
             'posts' => $userPosts,
-            'postsCount' => $userPostsCount
+            'postsCount' => $userPostsCount,
         ]);
     }
 

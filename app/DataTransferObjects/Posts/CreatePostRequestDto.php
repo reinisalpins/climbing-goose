@@ -11,9 +11,7 @@ class CreatePostRequestDto
     public function __construct(
         public string $title,
         public string $body,
-        public array  $categories,
-        public User   $user,
-    )
-    {
-    }
+        public array $categories,
+        public User $user,
+    ) {}
 }

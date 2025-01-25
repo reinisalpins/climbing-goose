@@ -15,11 +15,9 @@ use Illuminate\View\View;
 class AuthController extends Controller
 {
     public function __construct(
-        private readonly AuthManager    $authManager,
+        private readonly AuthManager $authManager,
         private readonly UserRepository $authRepository,
-    )
-    {
-    }
+    ) {}
 
     public function showLogin(): View
     {

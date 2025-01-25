@@ -16,20 +16,20 @@ class DeletePostRequest extends FormRequest
             'post_id' => [
                 'required',
                 'integer',
-                Rule::exists(Post::class, 'id')
-            ]
+                Rule::exists(Post::class, 'id'),
+            ],
         ];
     }
 
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'post_id' => $this->getPostId()
+            'post_id' => $this->getPostId(),
         ]);
     }
 
     public function getPostId(): int
     {
-        return (int)$this->route('post_id');
+        return (int) $this->route('post_id');
     }
 }
