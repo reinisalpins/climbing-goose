@@ -22,8 +22,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/posts', [PostsController::class, 'showUserPosts'])->name('profile.posts.index');
     Route::get('/profile/posts/create', [PostsController::class, 'showCreatePostForm'])->name('profile.posts.create');
-    Route::post('/posts', [PostsController::class, 'createPost'])->name('posts.store');
 
+    Route::post('/posts', [PostsController::class, 'createPost'])->name('posts.store');
     Route::post('/posts/{post_id}/comments', [CommentsController::class, 'createComment'])->name('posts.comments.store');
 
     Route::middleware(EnsurePostOwnership::class)->group(function () {
