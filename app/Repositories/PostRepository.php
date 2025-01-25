@@ -81,16 +81,16 @@ class PostRepository
             ->get();
     }
 
-    public function searchPosts(string $searchQuery = null): Collection
+    public function searchPosts(string $searchTerm = null): Collection
     {
         $query = $this->post
             ->with('categories')
             ->withCount('comments');
 
-        if ($searchQuery) {
-            $query->where(function(Builder $builder) use ($searchQuery) {
-                $builder->where('body', 'like', '%' . $searchQuery . '%')
-                    ->orWhere('title', 'like', '%' . $searchQuery . '%');
+        if ($searchTerm) {
+            $query->where(function(Builder $builder) use ($searchTerm) {
+                $builder->where('body', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('title', 'like', '%' . $searchTerm . '%');
             });
         }
 

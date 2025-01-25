@@ -11,15 +11,15 @@ class SearchPostsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query' => [
+            'term' => [
                 'string',
                 'nullable',
             ]
         ];
     }
 
-    public function getQuery(): ?string
+    public function getTerm(): ?string
     {
-        return $this->input('query');
+        return $this->input('term');
     }
 }

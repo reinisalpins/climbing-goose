@@ -103,11 +103,11 @@ class PostsController extends Controller
 
     public function searchPosts(SearchPostsRequest $request): View
     {
-        $posts = $this->postRepository->searchPosts($request->getQuery());
+        $posts = $this->postRepository->searchPosts($request->getTerm());
 
         return view('pages.search-posts', [
             'posts' => $posts,
-            'searchTerm' => $request->getQuery(),
+            'searchTerm' => $request->getTerm(),
         ]);
     }
 }
