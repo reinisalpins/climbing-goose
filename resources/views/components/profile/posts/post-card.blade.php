@@ -1,6 +1,6 @@
 <li class="border p-3 rounded-2xl flex flex-col gap-2">
     <h2 class="font-bold text-lg">{{$post->title}}</h2>
-    <span class="text-sm text-gray-600">{{ $post->created_at->toFormattedDateString() }}</span>
+    <span class="text-sm text-gray-600">{{ $post->created_at->toDayDateTimeString() }}</span>
     <p>{{Str::limit($post->body, 150)}}</p>
     <div class="flex gap-3 mt-auto">
         <a class="underline underline-offset-2"

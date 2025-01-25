@@ -2,7 +2,7 @@
     <h1 class="font-bold text-lg">{{$post->title}}</h1>
     <span class="text-sm text-gray-600"><b>Author:</b> {{$post->user->name}}</span>
     <div class="flex justify-between items-center">
-        <span class="text-sm text-gray-600">{{$post->created_at->toFormattedDayDateString()}}</span>
+        <span class="text-sm text-gray-600">{{$post->created_at->toDayDateTimeString()}}</span>
         <span class="text-sm text-gray-600 flex items-center gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots"
                  viewBox="0 0 16 16">

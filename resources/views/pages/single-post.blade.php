@@ -3,7 +3,7 @@
     <div class="container py-6 flex flex-col gap-6">
         <h1 class="text-2xl font-bold">{{$post->title}}</h1>
         <span class="text-sm text-gray-600"><b>Author:</b> {{$post->user->name}}</span>
-        <span class="text-sm text-gray-600">{{$post->created_at->toFormattedDayDateString()}}</span>
+        <span class="text-sm text-gray-600">{{$post->created_at->toDayDateTimeString()}}</span>
         <div class="flex flex-wrap gap-2">
             @foreach($post->categories as $category)
                 @include('components.posts.post-category-chip', ['name' => $category->name])
