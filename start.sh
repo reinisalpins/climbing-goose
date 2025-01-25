@@ -9,6 +9,8 @@ docker run --rm \
 
 cp .env.example .env
 
+touch database/database.sqlite
+
 ./vendor/bin/sail up -d
 
 sleep 10
