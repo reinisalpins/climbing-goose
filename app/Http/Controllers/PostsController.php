@@ -96,14 +96,14 @@ class PostsController extends Controller
 
     public function showAll(): View
     {
-        $posts = $this->postRepository->getAllPosts();
+        $posts = $this->postRepository->getPosts();
 
         return view('pages.posts', ['posts' => $posts]);
     }
 
     public function searchPosts(SearchPostsRequest $request): View
     {
-        $posts = $this->postRepository->searchPosts($request->getTerm());
+        $posts = $this->postRepository->getPosts($request->getTerm());
 
         return view('pages.search-posts', [
             'posts' => $posts,

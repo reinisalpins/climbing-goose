@@ -73,24 +73,16 @@ class PostRepository
         $this->getById($postId)->delete();
     }
 
-    public function getAllPosts(): Collection
-    {
-        return $this->post
-            ->with('categories')
-            ->withCount('comments')
-            ->get();
-    }
-
-    public function searchPosts(string $searchTerm = null): Collection
+    public function getPosts(string $searchTerm = null): Collection
     {
         $query = $this->post
-            ->with('categories')
+            ->with(['categories', 'user'])
             ->withCount('comments');
 
         if ($searchTerm) {
-            $query->where(function(Builder $builder) use ($searchTerm) {
-                $builder->where('body', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('title', 'like', '%' . $searchTerm . '%');
+            $query->where(function (Builder $builder) use ($searchTerm) {
+                $builder->where('body', 'like', "%$searchTerm%")
+                    ->orWhere('title', 'like', "%$searchTerm%");
             });
         }
 

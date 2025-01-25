@@ -1,5 +1,6 @@
 <div class="flex flex-col gap-3 border py-5 px-3 rounded-2xl">
     <h1 class="font-bold text-lg">{{$post->title}}</h1>
+    <span class="text-sm text-gray-600"><b>Author:</b> {{$post->user->name}}</span>
     <div class="flex justify-between items-center">
         <span class="text-sm text-gray-600">{{$post->created_at->toFormattedDayDateString()}}</span>
         <span class="text-sm text-gray-600 flex items-center gap-1.5">
@@ -19,5 +20,5 @@
             @include('components.posts.post-category-chip', ['name' => $category->name])
         @endforeach
     </div>
-    <a class="bg-primary text-white text-center rounded-lg py-1.5 mt-2 text-sm" href="{{route('posts.show', ['post_id' => $post->id])}}">Continue reading</a>
+    <a class="bg-primary text-white text-center rounded-lg py-1.5 mt-auto text-sm" href="{{route('posts.show', ['post_id' => $post->id])}}">Continue reading</a>
 </div>

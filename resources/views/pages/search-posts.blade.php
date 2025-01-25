@@ -2,9 +2,7 @@
 @section('content')
     <div class="py-6 border-b">
         <div class="container">
-            @include('components.search-bar', [
-            'searchTerm' => $searchTerm
-            ])
+            @include('components.search-bar', ['searchTerm' => $searchTerm])
         </div>
     </div>
     <div class="container py-6">
