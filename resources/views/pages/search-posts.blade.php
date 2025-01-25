@@ -12,4 +12,3 @@
         @include('components.posts.posts-list', ['posts' => $posts])
     </div>
 @endsection
-ts
