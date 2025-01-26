@@ -1,7 +1,8 @@
 @php
     use Illuminate\Support\Str;
+    use App\Models\Post;
 
-    /** @var $post \App\Models\Post */
+    /** @var $post Post */
 @endphp
 
 @extends('layouts.app')
