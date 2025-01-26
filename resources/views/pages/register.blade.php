@@ -5,6 +5,6 @@
         <div class="max-w-[500px] w-full">
             @include('components.forms.auth.register-form')
         </div>
-        <p class="mt-6">Already have an account? <a class="underline" href="/login">Login</a></p>
+        <p class="mt-6">Already have an account? <a class="underline" href="{{route('auth.login')}}">Login</a></p>
     </div>
 @endsection
